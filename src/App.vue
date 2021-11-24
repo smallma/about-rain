@@ -1,6 +1,7 @@
 <script setup>
   import Header from './components/Header.vue'
   import Introduce from './components/Introduce.vue'
+  import Portfolio from './components/Portfolio.vue'
 
   import Footer from './components/Footer.vue'
 </script>
@@ -8,11 +9,13 @@
 <template>
   <Header />
   <Introduce />
+  <Portfolio />
   <Footer />
 </template>
 
 <style>
 html {
+  overflow-x: hidden;
   width: 100%;
   font-size: 16px;
   background: #1d1b1d;

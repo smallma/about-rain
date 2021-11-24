@@ -1,3 +1,8 @@
+<script setup>
+    import ReplaceWording from './ReplaceWording.vue'
+</script>
+
+
 <template>
   <div class="introduce" id="about">
     <video class="introduce_video" width="100%" controls muted>
@@ -6,26 +11,27 @@
     </video>
     <div class="introduce_video-mask">></div>
     <div class="introduce_content">
-      <span class="content-line-1">Hi</span>
-      <span class="content-line-2">I am Rain</span>
-      <span class="content-line-3">I live in Taipei</span>
-      <span class="content-line-4">Hi</span>
+      <div class="content-sticky">
+
+      <span class="content-line content-line-1">Hello</span>
+      <span class="content-line content-line-2">I am <span class="special"></span></span>
+      <span class="content-line content-line-3">I live in Taipei</span>
+      <span class="content-line content-line-4">I love <ReplaceWording :wodingList="['Photography', 'Model', 'Coding']" /></span>
+
+      
+      </div>
+    </div>
+
+    <div class="introduce_belt">
+      <div class="belt-sticky">
+        <span class="belt"><ReplaceWording :wodingList="['Javascript', 'PUG', 'SCSS', 'Python']" /> Developer</span>
+      </div>
     </div>
   </div>
 </template>
 
-<script>
-export default {
-  setup () {
-    
-
-    return {}
-  }
-}
-</script>
 
 <style lang="scss" scoped>
-
 .introduce {
   position: relative;
   width: 100%;
@@ -56,17 +62,79 @@ export default {
     position: absolute;
     top: 0;
     left: 50%;
-    margin-left: -300px;
+    margin-left: 0;
     width: 500px;
     height: 150vh;
 
-    .content-line-1 {
+    .content-sticky {
       position: sticky;
+      top: 20vh;
+      height: 100vh;
+    }
+
+    .content-line {
+      display: block;
+      position: relative;
       color: #fff;
-      font-size: 80px;
+      font-size: 2rem;
+      text-align: left;
     } 
+
+    .content-line-1 {
+      font-size: 10rem;
+      transform: rotate(-13deg) translate3d(-190px, -30px, 0);
+    }
+
+    .content-line-2 {
+      .special {
+        font-size: 5rem;
+      }
+    }
+
+    .content-line-4 {
+      .replace_wording {
+        top: 21px;
+        padding-left: 10px;
+      }
+    }
   }
+  .introduce_belt {
+    position: absolute;
+    top: calc(150vh - 160px); 
+    left: 0;
+    margin-left: 0;
+    width: 100vw;
+    height: 160px;
 
+    .belt-sticky {
+      position: sticky;
+      top: 0;
+      height: 160px;
+
+      .belt {
+        display: block;
+        position: relative;
+        padding: 25px 20px;
+        box-sizing: border-box;
+        width: 100vw;
+        color: #fff;
+        font-size: 5rem;
+        min-height: 160px;
+        background: rgb(83 77 118 / 20%);
+
+
+        :deep .replace_wording {
+          top: 8px;
+          text-align: right;
+
+          .wording {
+            width: 100%;
+            color: #adffb0;
+            text-align: right;
+          }
+        }
+      }
+    }
+  }
 }
-
 </style>

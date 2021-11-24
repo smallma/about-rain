@@ -6,21 +6,16 @@
 
 <script>
 export default {
-  setup () {
-    
-
-    return {}
-  }
+  name: 'Footer'
 }
 </script>
 
 <style lang="scss" scoped>
   .footer {
-    position: fixed;
-    z-index: 1000;
-    bottom: 0;
-    left: 0;
-    opacity: 1;
+    position: relative;
+    // z-index: 1000;
+    // bottom: 0;
+    // left: 0;
     padding: 10px 20px;
     width: 100vw;
     text-align: center;
