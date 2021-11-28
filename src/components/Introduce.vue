@@ -36,7 +36,8 @@
   position: relative;
   width: 100%;
   height: 150vh;
-
+  z-index: 2;
+  background-color: #000;
   .introduce_video {
     position: sticky;
     top: 0;
@@ -81,8 +82,9 @@
     } 
 
     .content-line-1 {
-      font-size: 10rem;
-      transform: rotate(-13deg) translate3d(-190px, -30px, 0);
+      font-size: 13rem;
+      transform: rotate(-13deg) translate3d(-350px, -42px, 0);
+      letter-spacing: 22px;
     }
 
     .content-line-2 {
