@@ -2,7 +2,7 @@
   <div :class="'history_card ' + getAlign(history.id) + ' ' + isShow">
     <!-- <img class="history-img" v-bind:src="'@/assets/images/' + history.type + '/' + history.from + '/history_img.jpg'" /> -->
     <!-- <img class="history-img" :src="require(`../../assets/images/${history.type}/${history.from}/history_img.jpg`)" /> -->
-    <img class="history-img" v-bind:src="'/images/' + history.type + '/' + history.from + '/history_img.jpg'" />
+    <img class="history-img" v-bind:src="'./images/' + history.type + '/' + history.from + '/history_img.jpg'" />
     <span class="history-year">{{ history.year }}</span>
     <span class="history-info">{{ history.info }}</span>
     <span class="history-title">{{ history.title }}</span>
@@ -60,7 +60,7 @@
         const rangeBottom = this.windowHeight * 0.3;
         // console.log(window.scrollY, this.offsetTop, this.windowHeight, this.offsetTop + rangeTop, this.offsetTop + rangeBottom);
         if (windowBottom > this.offsetTop + rangeBottom && windowBottom < this.offsetTop + rangeTop) {
-          const backgroundSrc = '/images/' + this.history.type + '/' + this.history.from + '/history_bg.jpg';
+          const backgroundSrc = './images/' + this.history.type + '/' + this.history.from + '/history_bg.jpg';
           this.isShow = ' is-show';
 
           if (window.backgroundSrc === backgroundSrc) {return; }
