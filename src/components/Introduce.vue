@@ -7,7 +7,7 @@
   <div class="introduce" id="about">
     <video class="introduce_video" width="100%" controls muted>
     <!-- <video class="introduce_video" width="100%" controls loop autoplay muted> -->
-      <source src="../assets/coding.mp4" type="video/mp4">
+      <source :src="'./images/coding.mp4'" type="video/mp4">
     </video>
     <div class="introduce_video-mask">></div>
     <div class="introduce_content">
