@@ -40,7 +40,7 @@
             'id': 2,
             'type': 'education',
             'from': 'innoserve',
-            'bgHeightFull': true,
+            'bgHeightFull': false,
             'year': '2006',
             'title': '全國大專院校專題競賽',
             'info': '畢業專題以產學合作的 POS 機開發無人借還書系統, 透過 JSP 語法開發圖書館借還書功能, 並使用 RFID 實現自動化偵測借還數量與書籍對應 ID, 可有效提升借還書效率, 並於 2006 年全國大專院校專題競賽中獲得佳作(第四名)殊榮'
@@ -58,7 +58,7 @@
             'id': 4,
             'type': 'education',
             'from': 'ieee',
-            'bgHeightFull': true,
+            'bgHeightFull': false,
             'year': '2008',
             'title': 'IEEE 最佳學生論文',
             'info': '2008 年以論文 KML 技術實現台灣遙測地理平台獲得 IEEE 最佳學生論文殊榮, 論文中透過 JSP 語法開發遙測資訊平台, 整合分類言算法與平行運算, 提升計算效率, 並即時針對高光譜影像計算不同的分類影像, 並使用 KML 技術將分類影像疊蓋到 Goolgle Earth 做 3D 檢視, 透過這個系統可以提升分類影像的辨別率與操作體驗'
@@ -67,7 +67,7 @@
             'id': 5,
             'type': 'education',
             'from': 'aea',
-            'bgHeightFull': true,
+            'bgHeightFull': false,
             'year': '2008',
             'title': '兵役 - 行政執行處',
             'info': '在替代役時期於台北行政執行處統計處服兵役, 並於同年被擢升為管理幹部, 負責管理處內 60 位役男生活起居相關內容, 在行政執行處時期因大量案件需要處理, 且要再點時間內確實且正確的完成, 這樣的環境也確實磨煉了個人的耐性與細心程度'
@@ -148,7 +148,7 @@
             'id': 14,
             'type': 'asus',
             'from': 'cmd',
-            'bgHeightFull': false,
+            'bgHeightFull': true,
             'year': '2015',
             'title': '入職 ASUS Creative Web Design',
             'info': 'test'
