@@ -7,7 +7,10 @@
 
 <template>
   <div class="replace_wording">
-    <div v-for="i, index in wodingList" class="wording" v-bind:class="{'active': this.count == index}">{{ i }}</div>
+    <!-- <div v-for="i, index in wodingList" class="wording" v-bind:class="{'active': this.count == index}">{{ i }}</div> -->
+    <div class="wording" 
+      v-for="(i, index) in wodingList" 
+      v-bind:class="{ active : index == count }">{{ i }}</div>
   </div>
 </template>
 

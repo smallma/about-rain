@@ -176,7 +176,7 @@
     transform: translate3d(0px, -20px, 0px);
     transition: transform 400ms;
 
-     .history-img {
+    .history-img {
         filter: grayscale(1);
         transition: all 400ms;
       }
