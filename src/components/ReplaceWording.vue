@@ -7,10 +7,9 @@
 
 <template>
   <div class="replace_wording">
-    <!-- <div v-for="i, index in wodingList" class="wording" v-bind:class="{'active': this.count == index}">{{ i }}</div> -->
     <div class="wording" 
-      v-for="(i, index) in wodingList" 
-      v-bind:class="{ active : index == count }">{{ i }}</div>
+      v-for="(i, index) of wodingList"
+      v-bind:class="{ active : isSelected(index) }">{{ i }}</div>
   </div>
 </template>
 
@@ -22,6 +21,15 @@
         count: 0
       }
     },
+
+    computed:{
+      isSelected: function() {
+        return function(index){
+          return index === this.count;
+        }
+      }
+    },
+
     mounted() {
       setInterval(()=> {
         this.count = this.count + 1;
