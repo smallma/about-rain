@@ -9,14 +9,14 @@
     <video class="introduce_video" width="100%" controls loop autoplay muted>
       <source :src="'./images/coding.mp4'" type="video/mp4">
     </video>
-    <div class="introduce_video-mask">></div>
+    <div class="introduce_video-mask"></div>
     <div class="introduce_content">
       <div class="content-sticky">
 
       <span class="content-line content-line-1">Hello</span>
-      <span class="content-line content-line-2">I am <span class="special"></span></span>
+      <span class="content-line content-line-2">I am <span class="special">Rain</span></span>
       <span class="content-line content-line-3">I live in Taipei</span>
-      <span class="content-line content-line-4">I love <ReplaceWording :wodingList="['Photography', 'Model', 'Coding']" /></span>
+      <span class="content-line content-line-4">I love <ReplaceWording :wodingList="['Photography', 'Lego', 'Coding']" /></span>
 
       
       </div>
@@ -34,10 +34,11 @@
 <style lang="scss" scoped>
 .introduce {
   position: relative;
+  z-index: 2;
   width: 100%;
   height: 150vh;
-  z-index: 2;
   background-color: #000;
+
   .introduce_video {
     position: sticky;
     top: 0;
@@ -55,6 +56,7 @@
     left: 29%;
     width: 100vw;
     height: 150vh;
+
     // background: rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(2px);
   }
@@ -100,6 +102,7 @@
       }
     }
   }
+
   .introduce_belt {
     position: absolute;
     top: calc(150vh - 160px); 
@@ -123,7 +126,6 @@
         font-size: 5rem;
         min-height: 160px;
         background: rgb(83 77 118 / 20%);
-
 
         :deep .replace_wording {
           top: 8px;

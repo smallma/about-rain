@@ -2,7 +2,6 @@
   import Header from './components/Header.vue'
   import Introduce from './components/Introduce.vue'
   import Portfolio from './components/Portfolio.vue'
-
   import Footer from './components/Footer.vue'
 </script>
 

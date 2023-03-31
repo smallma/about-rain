@@ -20,7 +20,7 @@
     z-index: 1000;
     top: 0;
     width: 100%;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgb(0 0 0 / 70%);
 
     .header-right {
       position: relative;

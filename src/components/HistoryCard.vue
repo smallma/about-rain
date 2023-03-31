@@ -4,12 +4,21 @@
     <!-- <img class="history-img" :src="require(`../../assets/images/${history.type}/${history.from}/history_img.jpg`)" /> -->
     <img class="history-img" v-bind:src="'./images/' + history.type + '/' + history.from + '/history_img.jpg'" />
     <span class="history-year">{{ history.year }}</span>
-    <span class="history-info">{{ history.info }}</span>
+    <div class="info-container">
+      <span class="history-info">{{ history.info }}</span>
+      <div class="product-links" v-if="history.links && history.links.length">
+        <a v-for="link in history.links" :key="link.name" :href="link.url" target="_blank">{{ link.name }}</a>
+      </div>
+    </div>
     <span class="history-title">{{ history.title }}</span>
+
   </div>
 </template>
 
 <script>
+  let timeoutIdResize;
+  let timeoutIdUpdateBg;
+
   export default {
     name: 'HistoryCard',
     props: {
@@ -21,55 +30,96 @@
     data: function(){
       return {
         offsetTop: 0,
-        scrollTime: new Date().getTime(),
         isShow: '',
         windowHeight: window.innerHeight,
         bgClass: 'width-first'
       };
     },
     created () {
-      window.addEventListener('scroll', this.handleScroll);
+      window.addEventListener('scroll', this.debounce(this.handleScroll));
 
       this.bgClass = this.history.bgHeightFull ? 'height-first' : 'width-first';
+
+      window.addEventListener("resize", this.handleResize);
     },
     destroyed () {
-      window.removeEventListener('scroll', this.handleScroll);
+      window.removeEventListener('scroll', this.debounce(this.handleScroll));
+      window.removeEventListener("resize", this.handleResize);
     },
     mounted () {
-      const getOffset = (element, horizontal = false) => {
-        if(!element) { return 0; }
-        return getOffset(element.offsetParent, horizontal) + (horizontal ? element.offsetLeft : element.offsetTop);
-      }
-
-      this.offsetTop = getOffset(this.$el);
+      // const getOffset = (element, horizontal = false) => {
+      //   if(!element) { return 0; }
+      //   return getOffset(element.offsetParent, horizontal) + (horizontal ? element.offsetLeft : element.offsetTop);
+      // }
+      setTimeout(() => {
+        this.offsetTop = this.getOffset(this.$el);
+        console.log('=== mounted offsetTop update ===');
+      }, 1000);
     },
     methods: {
+      debounce: function (func, delay = 250) {
+        let timer = null;
+      
+        return function(...args) {
+          let context = this;
+      
+          clearTimeout(timer);
+          timer = setTimeout(() => {
+            func.apply(context, args);
+          }, delay);
+        }
+      },
+      getOffset: function (element, horizontal = false) {
+        if(!element) { return 0; }
+        return this.getOffset(element.offsetParent, horizontal) + (horizontal ? element.offsetLeft : element.offsetTop);
+      },
+      handleResize: function () {
+        clearTimeout(timeoutIdResize);
+        
+        timeoutIdResize = setTimeout(() => {
+          this.offsetTop = this.getOffset(this.$el);
+          console.log('=== handleResize offsetTop update ===');
+        }, 300);
+      },
       getAlign: function(id) {
         const align = id % 2 == 0 ? 'left' : 'right';
         return 'text-' + align;
       },
       handleScroll (event) {
-        const currentTime = new Date().getTime();
+        function _updateBg () {
+          const currentTime = new Date().getTime();
+          console.log('currentTime: ', currentTime);
 
-        if (currentTime - this.scrollTime < 100) { return;}
-        // console.log('this.scrollTime: ', this.scrollTime, ', currentTime: ', currentTime);
-        this.scrollTime = currentTime;
+          // if (currentTime - this.scrollTime < 300) { return;}
+          // console.log('this.scrollTime: ', this.scrollTime, ', currentTime: ', currentTime);
+          // this.scrollTime = currentTime;
 
-        const windowBottom = window.scrollY + this.windowHeight;
-        const rangeTop = this.windowHeight * 0.7;
-        const rangeBottom = this.windowHeight * 0.3;
-        // console.log(window.scrollY, this.offsetTop, this.windowHeight, this.offsetTop + rangeTop, this.offsetTop + rangeBottom);
-        if (windowBottom > this.offsetTop + rangeBottom && windowBottom < this.offsetTop + rangeTop) {
-          const backgroundSrc = './images/' + this.history.type + '/' + this.history.from + '/history_bg.jpg';
-          this.isShow = ' is-show';
+          const windowBottom = window.scrollY + this.windowHeight;
+          const rangeTop = this.windowHeight * 0.8;
+          const rangeBottom = this.windowHeight * 0.2;
+          if (windowBottom > this.offsetTop + rangeBottom && windowBottom < this.offsetTop + rangeTop) {
+          
+            console.log(window.scrollY, this.offsetTop, this.windowHeight, this.offsetTop + rangeTop, this.offsetTop + rangeBottom);
 
-          if (window.backgroundSrc === backgroundSrc) {return; }
-          window.backgroundSrc = backgroundSrc;
-          console.log('backgroundSrc: ', backgroundSrc, this.bgClass);
-          this.$emit('changeBackground', backgroundSrc, this.bgClass);
-        } else {
-          this.isShow = '';
+            const backgroundSrc = './images/' + this.history.type + '/' + this.history.from + '/history_bg.jpg';
+            this.isShow = ' is-show';
+
+            if (window.backgroundSrc === backgroundSrc) {return; }
+            window.backgroundSrc = backgroundSrc;
+            console.log('backgroundSrc: ', backgroundSrc, this.bgClass);
+            this.$emit('changeBackground', backgroundSrc, this.bgClass);
+          } else {
+            this.isShow = '';
+          }
         }
+        
+        _updateBg.call(this);
+
+        // clearTimeout(timeoutIdUpdateBg);
+        // timeoutIdUpdateBg = setTimeout(() => {
+        //   _updateBg.call(this);
+        // }, 300);
+        
       }
     }
   }
@@ -80,18 +130,18 @@
   .history_card {
     position: relative;
     left: 50%;
-
-    width: 440px;
     padding-bottom: 100px;
+    width: 440px;
 
     &.text-right {
-      text-align: left;
       margin-left: 50px;
-      .history-title {
-        text-align: right;
-        margin-left: -890px;
+      text-align: left;
 
-        &:before {
+      .history-title {
+        margin-left: -890px;
+        text-align: right;
+
+        &::before {
           right: -22px;
 
         }
@@ -103,69 +153,109 @@
     }
 
     &.text-left {
-      text-align: right;
       margin-left: -490px;
+      text-align: right;
 
       .history-title {
-        text-align: left;
         margin-left: 292px;
-        &:before {
+        text-align: left;
+
+        &::before {
           left: -24px;
         }
+      }
+
+      .history-info {
+        text-align: left;
       }
     }
 
     .history-year,
     .history-info {
-      position: relative;
       display: block;
+      position: relative;
       color: #fff;
+    }
+
+    .info-container {
+      display: block;
+      position: relative;
+      margin-top: 8px;
+      padding: 13px;
+      border-radius: 5px;
+      background: rgb(0 0 0 / 70%);
+      flex-wrap: wrap;
+
+      .history-info,
+      .product-links {
+        flex: 100%;
+      }
     }
 
     .history-year {
-      font-size: 50px;
-      font-weight: bold;
       margin-top: -41px;
       margin-left: 11px;
-      text-shadow: 1px 2px 5px #333;
-    }
-
-    .history-info {
-      margin-top: 8px;
-      line-height: 1.8;
-      font-size: 1rem;
-      padding: 13px 13px;
-      background: rgba(0,0,0,0.4);
-      border-radius: 5px;
+      color: #b3dcff;
+      font-size: 50px;
+      font-weight: bold;
+      text-shadow: 4px 2px 5px #181818;
     }
 
     .history-title {
-      position: absolute;
       display: block;
-      width: 600px;
-      color: #fff;
+      position: absolute;
 
       // top: 50%;
       top: 90px;
       left: 50%;
+      width: 600px;
+      color: #fff;
 
-      &:before {
-        position: absolute;
+      &::before {
         display: block;
-        content: '';
+        position: absolute;
         top: 50%;
         width: 4px;
         height: 15px;
-        background: rgba(255, 255, 255, 0.5);
+        background: rgb(255 255 255 / 50%);
         transform: translateY(-50%);
+        content: '';
+      }
+    }
+
+    .history-info {
+      line-height: 1.8;
+      font-size: 1rem;
+    }
+
+    .product-links {
+      display: flex;
+      position: relative;
+      margin-top: 11px;
+      flex-wrap: wrap;
+      gap: 4px;
+
+      a {
+        color: #fff;
+        font-size: 16px;
+
+        // text-decoration: unset;
+        transition: opacity 300ms;
+        flex: 100%;
+
+        &:hover {
+          opacity: 0.8;
+        }
       }
     }
   }
+
   .history-img {
+    position: relative;
+    left: 30px;
     margin-left: 0;
     width: 380px;
     height: 220px;
-
     box-shadow: 15px 17px 40px;
     border-radius: 5px;
   }
@@ -173,19 +263,94 @@
   // animation
 
   .history_card {
-    transform: translate3d(0px, -20px, 0px);
+    transform: translate3d(0, -20px, 0);
     transition: transform 400ms;
 
     .history-img {
         filter: grayscale(1);
         transition: all 400ms;
       }
+
     &.is-show {
-      
-      transform: translate3d(0px, 0px, 0px);
+      transform: translate3d(0, 0, 0);
+
       .history-img {
         filter: grayscale(0);
       }
     }
   }
+
+  @media all and (max-width: 1280px) and (min-width: 730.5px) {
+  .history_card {
+    width: 50%;
+
+    .history-img {
+      position: relative;
+      width: 90%;
+      height: auto;
+    }
+
+    .info-container {
+      position: relative;
+      padding: 13px 0;
+      width: 90%;
+
+      .history-info,
+      .product-links {
+        padding: 0 13px;
+      }
+    }
+
+    &.text-left {
+      margin-left: -50%;
+
+      .history-img {
+        right: 5%;
+      }
+
+      .history-year {
+        position: relative;
+        right: 5%;
+      }
+
+      .history-title {
+        left: calc(100% + 22px);
+        margin-left: 0;
+      }
+
+      .info-container {
+        left: 5%;
+      }
+    }
+
+    &.text-right {
+      margin-left: 0;
+
+      .history-img {
+        left: 5%;
+      }
+
+      .history-year {
+        position: relative;
+        left: 5%;
+      }
+
+      .history-title {
+        position: relative;
+        left: -220px;
+        margin-left: 0;
+        width: 200px;
+      }
+
+      .info-container {
+        left: 5%;
+      }
+    }
+  }
+  
+}
+
+@media all and (max-width: 730.4px) {
+  
+}
 </style>

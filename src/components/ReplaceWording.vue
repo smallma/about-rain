@@ -9,7 +9,7 @@
   <div class="replace_wording">
     <div class="wording" 
       v-for="(i, index) of wodingList"
-      v-bind:class="{ active : isSelected(index) }">{{ i }}</div>
+      v-bind:class="{ active : index === this.count }">{{ i }}</div>
   </div>
 </template>
 
@@ -24,8 +24,8 @@
 
     computed:{
       isSelected: function() {
-        return function(index){
-          return index === this.count;
+        return function(index, count) {
+          return index === count;
         }
       }
     },
@@ -36,24 +36,26 @@
         if (this.count > this.wodingList.length - 1) {
           this.count = 0;
         }
-      }, 3000);
+
+        console.log(this.count);
+      }, 2000);
     }
   }
   
 </script>
 
 <style lang="scss" scoped>
-@keyframes wordingRotate {
+@keyframes wordingRotateAni {
   0% {
     opacity: 1;
     transform: translate3d(0, 0, 0);
   }
 
-  25% {
+  10% {
     transform: translate3d(0, -100%, 0);
   }
 
-  60% {
+  80% {
     transform: translate3d(0, -100%, 0);
   }
 
@@ -94,7 +96,7 @@
     transform: translate3d(0, 0, 0);
     
     &.active {
-      animation: wordingRotate 3000ms forwards;
+      animation: wordingRotateAni 2000ms forwards;
     }
   }
 }
