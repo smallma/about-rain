@@ -338,6 +338,26 @@
   transform: translateX(-50%);
 }
 
+
+@media all and (max-width: 730.4px) {
+  #portfolio {
+    padding-top: 168px;
+    .portfolio-bg {
+
+      img {
+        width:100%; 
+        height:100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  .center_line {
+    left: 22px;
+    transform: none;
+  }
+  
+}
 </style>
 
 

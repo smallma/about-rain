@@ -305,7 +305,8 @@
       margin-left: -50%;
 
       .history-img {
-        right: 5%;
+        display: block;
+        margin-left: -10px;
       }
 
       .history-year {
@@ -336,7 +337,6 @@
       }
 
       .history-title {
-        position: relative;
         left: -220px;
         margin-left: 0;
         width: 200px;
@@ -350,7 +350,40 @@
   
 }
 
+
 @media all and (max-width: 730.4px) {
-  
+  .history_card {
+    text-align: left !important;
+    left: 43px;
+    margin-left: 0 !important;
+    padding-bottom: 66px;
+    width: calc(100% - 66px);
+    transform: none;
+
+    .history-title {
+      text-align: left !important;
+      top: 0;
+      left: 0;
+      margin-left: 0 !important;
+      width: 100%;
+
+      &:before {
+        right: unset;
+        left: -21px !important;
+        margin: 0;
+      }
+    }
+
+    .history-info {
+      text-align: left !important;
+      margin-top: 0;
+    }
+    .history-img {
+      left: 4px;
+      margin-top: 60px;
+      width: 100%;
+      height: 100%;
+    }
+  }
 }
 </style>

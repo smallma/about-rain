@@ -141,4 +141,40 @@
     }
   }
 }
+
+@media all and (max-width: 731px) {
+  .introduce {
+    .introduce_content {
+      left: 5.4%;
+      margin-left: 0;
+      width: 100%;
+
+      .content-line-1 {
+        left: 50%;
+        margin-left: -4px;
+        width: 320px;
+        font-size: 80px;
+        transform: rotate(15deg) translate3d(-50%, -12px, 0);
+      }
+    }
+
+    .introduce_belt {
+      top: calc(150vh - 100px);
+
+      .belt-sticky {
+        .belt {
+          font-size: 40px;
+          background: rgba(0,0,0, 0.9);
+          :deep .replace_wording {
+            text-align: center;
+
+            .wording {
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
+  }
+}
 </style>
