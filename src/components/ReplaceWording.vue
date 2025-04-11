@@ -77,7 +77,7 @@
 .replace_wording {
   display: inline-block;
   position: relative;
-  overflow: hidden;
+  overflow: clip;
   width: 300px;
   height: 4rem;
 

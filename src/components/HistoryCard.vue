@@ -1,8 +1,8 @@
 <template>
   <div :class="'history_card ' + getAlign(history.id) + ' ' + isShow">
-    <!-- <img class="history-img" v-bind:src="'@/assets/images/' + history.type + '/' + history.from + '/history_img.jpg'" /> -->
-    <!-- <img class="history-img" :src="require(`../../assets/images/${history.type}/${history.from}/history_img.jpg`)" /> -->
-    <img class="history-img" v-bind:src="'./images/' + history.type + '/' + history.from + '/history_img.jpg'" />
+    <!-- <img class="history-img" v-bind:src="'@/assets/images/' + history.type + '/' + history.from + '/history_img.webp'" /> -->
+    <!-- <img class="history-img" :src="require(`../../assets/images/${history.type}/${history.from}/history_img.webp`)" /> -->
+    <img class="history-img" v-bind:src="'./images/' + history.type + '/' + history.from + '/history_img.webp'" />
     <span class="history-year">{{ history.year }}</span>
     <div class="info-container">
       <span class="history-info">{{ history.info }}</span>
@@ -57,7 +57,7 @@
       }, 1000);
     },
     methods: {
-      debounce: function (func, delay = 250) {
+      debounce: function (func, delay = 100) {
         let timer = null;
       
         return function(...args) {
@@ -88,31 +88,57 @@
       handleScroll (event) {
         function _updateBg () {
           const currentTime = new Date().getTime();
-          console.log('currentTime: ', currentTime);
+          // console.log('currentTime: ', currentTime);
 
-          // if (currentTime - this.scrollTime < 300) { return;}
-          // console.log('this.scrollTime: ', this.scrollTime, ', currentTime: ', currentTime);
-          // this.scrollTime = currentTime;
+
+
+          // const windowBottom = window.scrollY + this.windowHeight;
+          // const rangeTop = this.windowHeight * 0.8;
+          // const rangeBottom = this.windowHeight * 0.4;
+          // if (windowBottom > this.offsetTop + rangeBottom && windowBottom < this.offsetTop + rangeTop) {
+          
+          //   console.log(window.scrollY, this.offsetTop, this.windowHeight, this.offsetTop + rangeTop, this.offsetTop + rangeBottom);
+
+          //   const backgroundSrc = './images/' + this.history.type + '/' + this.history.from + '/history_bg.webp';
+          //   this.isShow = ' is-show';
+
+          //   if (window.backgroundSrc === backgroundSrc) {return; }
+          //   window.backgroundSrc = backgroundSrc;
+          //   console.log('backgroundSrc: ', backgroundSrc, this.bgClass);
+          //   this.$emit('changeBackground', backgroundSrc, this.bgClass);
+          // } else {
+          //   this.isShow = '';
+          // }
 
           const windowBottom = window.scrollY + this.windowHeight;
-          const rangeTop = this.windowHeight * 0.8;
-          const rangeBottom = this.windowHeight * 0.2;
-          if (windowBottom > this.offsetTop + rangeBottom && windowBottom < this.offsetTop + rangeTop) {
-          
-            console.log(window.scrollY, this.offsetTop, this.windowHeight, this.offsetTop + rangeTop, this.offsetTop + rangeBottom);
+          const windowTop = window.scrollY;
+          const rangeTop = this.windowHeight * 0.8 + windowTop;
+          const rangeBottom = this.windowHeight * 0.4 + windowTop;
 
-            const backgroundSrc = './images/' + this.history.type + '/' + this.history.from + '/history_bg.jpg';
+          const middleOfWindow = window.scrollY + this.windowHeight / 2;
+
+
+          if (Math.abs(middleOfWindow - this.offsetTop) <= 300 && this.offsetTop < windowBottom && this.offsetTop > windowTop) {
+            console.log(window.scrollY, this.offsetTop, this.windowHeight, middleOfWindow);
+
+            const backgroundSrc = './images/' + this.history.type + '/' + this.history.from + '/history_bg.webp';
             this.isShow = ' is-show';
 
-            if (window.backgroundSrc === backgroundSrc) {return; }
+            if (window.backgroundSrc === backgroundSrc) return;
+
             window.backgroundSrc = backgroundSrc;
             console.log('backgroundSrc: ', backgroundSrc, this.bgClass);
             this.$emit('changeBackground', backgroundSrc, this.bgClass);
-          } else {
+
+            console.log('windowBottom: ', windowBottom, ', windowTop: ', windowTop, ', middleOfWindow: ', middleOfWindow, ', this.offsetTop: ', this.offsetTop, ', this.$el.offsetHeight: ', this.$el.offsetHeight);
+
+
+          } else if (this.offsetTop > rangeBottom || (this.offsetTop + this.$el.offsetHeight) < rangeTop) {
             this.isShow = '';
           }
         }
         
+        // this.debounce(this._updateBg.bind(this), 300);
         _updateBg.call(this);
 
         // clearTimeout(timeoutIdUpdateBg);
@@ -181,10 +207,13 @@
       display: block;
       position: relative;
       margin-top: 8px;
-      padding: 13px;
+      padding: 24px;
       border-radius: 5px;
       background: rgb(0 0 0 / 70%);
-      flex-wrap: wrap;
+      backdrop-filter: blur(10px);
+
+      overflow: clip;
+      border-radius: 8px;
 
       .history-info,
       .product-links {
@@ -193,9 +222,9 @@
     }
 
     .history-year {
-      margin-top: -41px;
+      margin-top: -24px;
       margin-left: 11px;
-      color: #b3dcff;
+      color: #fff;
       font-size: 50px;
       font-weight: bold;
       text-shadow: 4px 2px 5px #181818;
@@ -277,6 +306,10 @@
       .history-img {
         filter: grayscale(0);
       }
+
+      .history-year {
+          color: #b3dcff;
+      }
     }
   }
 
@@ -297,7 +330,7 @@
 
       .history-info,
       .product-links {
-        padding: 0 13px;
+        padding: 20px;
       }
     }
 

@@ -14,7 +14,7 @@
 
 <style>
 html {
-  overflow-x: hidden;
+  overflow-x: clip;
   width: 100%;
   font-size: 16px;
   background: #1d1b1d;

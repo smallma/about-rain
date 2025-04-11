@@ -37,6 +37,10 @@
             'info': 'ROG Phone 6, 7 都是大量使用 ScrollTrigger 特效, 是主流風格的網頁特效, 再搭配大量的影片播放控制, 調整最佳的網頁效能, 讓網頁都能順暢的瀏覽, 也符合 WCAL 2.1 Level AA 的無障礙標準, 也透過 Lighthouse 檢測 LCP 與 CLS 指標是否合格, 在 GA 與 SEO 上也是有符合華碩規範.',
             'links': [
               {
+                'name': 'ROG Phone 9',
+                'url': 'https://rog.asus.com/phones/rog-phone-9/'
+              },
+              {
                 'name': 'ROG Phone 7',
                 'url': 'https://rog.asus.com/phones/rog-phone-7/'
               },
@@ -115,6 +119,10 @@
             'title': 'ZenFone',
             'info': '2015 年開始的第一個產品就是 ZenFone Zoom, 當時實現了華碩內部自製第一個 RWD 網頁, 並開發各種 CSS/JS 特效, 其中包含當下最熱門的滾動視差特效, 開發接近 Apple 等級的網頁水準, 至今所有的 ZenFone 系列都是我們開發的產品網頁, 不乏也有不少 tw 語系也是委託我們開發',
             'links': [
+              {
+                'name': 'ZenFone 12',
+                'url': 'https://www.asus.com/mobile-handhelds/phones/zenfone/zenfone-12-ultra/'
+              },
               {
                 'name': 'ZenFone 6',
                 'url': 'https://www.asus.com/mobile/phones/zenfone/zenfone-6/'
@@ -290,7 +298,7 @@
 
   .portfolio-bg {
     display: flex;
-    overflow: hidden;
+    overflow: clip;
     align-items: center;
     justify-content: center;
 
@@ -341,7 +349,8 @@
 
 @media all and (max-width: 730.4px) {
   #portfolio {
-    padding-top: 168px;
+    padding-top: 32px;
+
     .portfolio-bg {
 
       img {
@@ -359,6 +368,3 @@
   
 }
 </style>
-
-
-

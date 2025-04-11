@@ -34,6 +34,7 @@
 <style lang="scss" scoped>
 .introduce {
   position: relative;
+  overflow: clip;
   z-index: 2;
   width: 100%;
   height: 150vh;
@@ -126,6 +127,8 @@
         font-size: 5rem;
         min-height: 160px;
         background: rgb(83 77 118 / 20%);
+        backdrop-filter: blur(10px);
+
 
         :deep .replace_wording {
           top: 8px;
@@ -144,6 +147,10 @@
 
 @media all and (max-width: 731px) {
   .introduce {
+    .introduce_vidoe {
+      opacity: 0.4;
+    }
+
     .introduce_content {
       left: 5.4%;
       margin-left: 0;
@@ -159,9 +166,13 @@
     }
 
     .introduce_belt {
-      top: calc(150vh - 100px);
+      top: unset;
+      bottom: 0;
+      height: auto;
 
       .belt-sticky {
+        height: auto;
+
         .belt {
           font-size: 40px;
           background: rgba(0,0,0, 0.9);
