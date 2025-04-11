@@ -323,7 +323,7 @@
       // }
     }
 
-    .img_mask{
+    .img_mask {
       display: block;
       position: fixed;
       top: 0;

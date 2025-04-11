@@ -14,7 +14,7 @@
       <div class="content-sticky">
 
       <span class="content-line content-line-1">Hello</span>
-      <span class="content-line content-line-2">I am <span class="special">Rain</span></span>
+      <span class="content-line content-line-2">I am <h1 class="special">Rain</h1></span>
       <span class="content-line content-line-3">I live in Taipei</span>
       <span class="content-line content-line-4">I love <ReplaceWording :wodingList="['Photography', 'Lego', 'Coding']" /></span>
 
@@ -24,7 +24,7 @@
 
     <div class="introduce_belt">
       <div class="belt-sticky">
-        <span class="belt"><ReplaceWording :wodingList="['Javascript', 'PUG', 'SCSS', 'Python']" /> Developer</span>
+        <h2 class="belt"><ReplaceWording :wodingList="['Javascript', 'PUG', 'SCSS', 'Python']" /> Developer</h2>
       </div>
     </div>
   </div>
@@ -91,7 +91,9 @@
     }
 
     .content-line-2 {
+
       .special {
+        display: inline-block;
         font-size: 5rem;
       }
     }

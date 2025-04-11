@@ -10,7 +10,7 @@
         <a v-for="link in history.links" :key="link.name" :href="link.url" target="_blank">{{ link.name }}</a>
       </div>
     </div>
-    <span class="history-title">{{ history.title }}</span>
+    <h2 class="history-title">{{ history.title }}</h2>
 
   </div>
 </template>
@@ -239,6 +239,8 @@
       left: 50%;
       width: 600px;
       color: #fff;
+      font-weight: 600;
+      font-size: 1rem;
 
       &::before {
         display: block;
