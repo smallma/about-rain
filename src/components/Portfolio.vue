@@ -144,8 +144,8 @@
             'bgHeightFull': true,
             'year': '2015',
             'title': 'ASUS Creative Web Design',
-            'info': '進入華碩網頁開發團隊後, 開始著手架設 git 環境, WiFi 環境, 網頁測試前後台, 前端網頁開發框架, 定義網頁檢測標準, 前端開發規範等, 2015 年從前端 1 人至今已擴展至 6 人, 從當初的 ZenFone 產品網頁以拓展到 ROG Phone, ZenFone, Zenbook, Vivobook, ROG Laptop 與各種 Accessory 網頁, 其中也包含些許串接 API 元件與一個 Vue2 多國語系網站.' 
-           },
+            'info': '進入華碩網頁開發團隊後, 開始著手架設 git 環境, WiFi 環境, 網頁測試前後台, 前端網頁開發框架, 定義網頁檢測標準, 前端開發規範等, 2015 年從前端 1 人至今已擴展至 5 人, 從當初的 ZenFone 產品網頁以拓展到 ROG Phone, ZenFone, Zenbook, Vivobook, ROG Laptop 與各種 Accessory 網頁, 其中也包含些許串接 API 元件與一個 Vue2 多國語系網站.' 
+          },
           {
             'id': 13,
             'type': 'quanta',
@@ -201,7 +201,7 @@
             'bgHeightFull': false,
             'year': '2011',
             'title': 'CCBU - OpenStack Glance Management System',
-            'info': 'Glance 替 OpenStack 提供映像檔服務, 透過 Glance 可以上傳, 檢視與修改映像檔, Glance Management System 可透過 GUI 介面操作與檢視 Glance 相關功能, 這邊是使用 Python 開發'
+            'info': 'Glance 替 OpenStack 提供映像檔服務, 透過 Glance 可以上傳, 檢視與修改映像檔, 我開發的 Glance Management System 可透過 GUI 介面操作與檢視 Glance 相關功能, 自動化管理 Glance, 這邊是使用 Python 開發'
           },
           
           {
@@ -211,7 +211,7 @@
             'bgHeightFull': false,
             'year': '2010',
             'title': 'CCBU - Memcached Automatic Failback System',
-            'info': 'Memecached 是一個分散式快取系統, 透過這個 service 可以減少 server request, 並增加 response 效率, 我們在自己的伺服器上開發 Memcached failover system, 透過伺服器自動偵測 memcached vm 服務狀態是否正常, 當系統偵測某一台 memcached 斷線時, 會即時啟動另一個備援的 memcached 替補, 這邊是使用 ShellScript / PHP 開發'
+            'info': 'Memecached 是一個分散式快取系統, 透過這個 service 可以減少 server request, 並增加 response 效率, 我們在自己的伺服器上開發 Memcached failover system, 透過伺服器自動偵測 memcached vm 服務狀態是否正常, 當系統偵測某一台 memcached 斷線時, 會即時啟動另一個備援的 memcached 替補, 這邊是使用 Shell Script / PHP 開發'
           },
 
           {
