@@ -7,7 +7,7 @@
     <div class="info-container">
       <span class="history-info">{{ history.info }}</span>
       <div class="product-links" v-if="history.links && history.links.length">
-        <a v-for="link in history.links" :key="link.name" :href="link.url" target="_blank">{{ link.name }}</a>
+        <a v-for="link in history.links" :key="link.name" :href="link.url" target="_blank" rel="noreferrer noopener">{{ link.name }}</a>
       </div>
     </div>
     <h2 class="history-title">{{ history.title }}</h2>
